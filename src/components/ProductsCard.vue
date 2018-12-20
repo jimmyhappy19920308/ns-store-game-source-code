@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ProductsPagination from './ProductsPagination.vue';
 
 export default {
@@ -73,18 +74,11 @@ export default {
     };
   },
   computed: {
-    filterProducts() {
-      const vm = this;
-      if (vm.filterCategory !== 'All') {
-        return vm.products.filter(item => item.category === vm.filterCategory);
-      }
-
-      return vm.products;
-    },
+    ...mapGetters('productsModules', ['filterProducts']),
   },
   methods: {
     getProducts(page = 1) {
-      this.$store.dispatch('getProducts', page);
+      this.$store.dispatch('productsModules/getProducts', page);
     },
     searchItem(newKeyword) {
       const vm = this;
