@@ -80,13 +80,6 @@ export default {
     getProducts(page = 1) {
       this.$store.dispatch('productsModules/getProducts', page);
     },
-    searchItem(newKeyword) {
-      const vm = this;
-
-      vm.products = vm.products.filter(
-        item => item.title.toLowerCase().indexOf(newKeyword.toLowerCase()) > -1,
-      );
-    },
     addShoppingCart(id, qty = 1) {
       const vm = this;
       const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
