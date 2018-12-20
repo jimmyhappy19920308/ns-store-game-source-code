@@ -12,6 +12,7 @@ import App from './App.vue';
 import router from './router';
 import './bus';
 import Currencyfilter from './filters/currency';
+import store from './store';
 
 Vue.config.productionTip = false;
 
@@ -28,6 +29,7 @@ Vue.component('loading', Loading);
 Vue.filter('currency', Currencyfilter);
 
 new Vue({
+  store,
   router,
   render: h => h(App),
 }).$mount('#app');

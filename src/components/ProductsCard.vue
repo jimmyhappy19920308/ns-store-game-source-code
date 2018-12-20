@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <div class="tab-content">
       <div class="tab-pane active" id="list-gold">
         <div class="row">
@@ -85,26 +84,7 @@ export default {
   },
   methods: {
     getProducts(page = 1) {
-      const vm = this;
-      let api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/products?page=${page}`;
-
-      if (vm.filterCategory !== 'All') {
-        api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/products/all`;
-      }
-
-      vm.isLoading = true;
-
-      vm.$http.get(api).then(response => {
-        if (response.data.success) {
-          vm.products = response.data.products;
-          vm.pagination = response.data.pagination;
-          vm.isLoading = false;
-        } else {
-          console.log(response.data.message);
-        }
-      });
+      this.$store.dispatch('getProducts', page);
     },
     searchItem(newKeyword) {
       const vm = this;
@@ -121,13 +101,13 @@ export default {
         qty,
       };
 
-      vm.isLoading = true;
+      this.$store.dispatch('updateLoading', true);
 
       vm.$http.post(api, { data: cart }).then(response => {
         if (response.data.success) {
           vm.$bus.$emit('get-cart-count');
 
-          vm.isLoading = false;
+          this.$store.dispatch('updateLoading', false);
 
           console.log(response.data.message);
         } else {

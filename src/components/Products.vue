@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading :active.sync="isLoading"></loading>
     <Carousel></Carousel>
     <div class="container main-contant mb-1">
       <div class="row">
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Carousel from './Carousel.vue';
 import ProductsListGroup from './ProductsListGroup.vue';
 import ProductsCard from './ProductsCard.vue';
@@ -26,6 +28,9 @@ export default {
     Carousel,
     ProductsListGroup,
     ProductsCard,
+  },
+  computed: {
+    ...mapGetters(['isLoading']),
   },
 };
 </script>
