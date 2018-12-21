@@ -50,8 +50,6 @@
     <!-- pagination -->
     <ProductsPagination
       v-if="this.$store.state.category === 'All'"
-      :parent-pagination="this.$store.state.pagination"
-      @get-current-page="getProducts"
     ></ProductsPagination>
   </div>
 </template>
@@ -63,11 +61,6 @@ import ProductsPagination from './ProductsPagination.vue';
 export default {
   components: {
     ProductsPagination,
-  },
-  data() {
-    return {
-      pagination: {},
-    };
   },
   computed: {
     ...mapGetters('productsModules', ['filterProducts']),
