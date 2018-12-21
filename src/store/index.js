@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import productsModules from './products';
+import cartsModules from './carts';
 
 Vue.use(Vuex);
 
@@ -26,5 +27,6 @@ export default new Vuex.Store({
   },
   modules: {
     productsModules,
+    cartsModules,
   },
 });
