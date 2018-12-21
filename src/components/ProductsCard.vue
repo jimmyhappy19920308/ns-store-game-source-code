@@ -101,14 +101,8 @@ export default {
   },
   created() {
     const vm = this;
-    vm.getProducts();
 
-    vm.$bus.$on('filter-category', category => {
-      vm.$set(vm, 'filterCategory', category);
-      if (vm.filterCategory !== 'All') {
-        vm.getProducts();
-      }
-    });
+    vm.getProducts();
   },
 };
 </script>
