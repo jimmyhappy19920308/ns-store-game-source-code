@@ -39,7 +39,7 @@ export default {
   methods: {
     getCurrentPage(page) {
       // vm.$emit('get-current-page', page);
-      this.$store.dispatch('getProducts', page);
+      this.$store.dispatch('productsModules/getProducts', page);
     },
   },
   created() {
