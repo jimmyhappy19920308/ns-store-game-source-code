@@ -32,9 +32,8 @@ export default {
     },
     filterCategory(context, category) {
       context.commit('CATEGORY', category);
-      if (category !== 'All') {
-        context.dispatch('getProducts');
-      }
+
+      context.dispatch('getProducts');
     },
   },
   mutations: {
