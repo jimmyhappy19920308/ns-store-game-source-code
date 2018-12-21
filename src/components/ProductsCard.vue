@@ -35,7 +35,7 @@
                 <a
                   href="#"
                   class="btn btn-outline-danger btn-sm btn-block"
-                  @click.prevent="addShoppingCart(item.id)"
+                  @click.prevent="addCart(item.id)"
                 >
                   <i class="fa fa-cart-plus" aria-hidden="true"></i> 加入購物車
                 </a>
@@ -49,7 +49,7 @@
 
     <!-- pagination -->
     <ProductsPagination
-      v-if="this.$store.state.filterCategory === 'All'"
+      v-if="this.$store.state.category === 'All'"
       :parent-pagination="pagination"
       @get-current-page="getProducts"
     ></ProductsPagination>
