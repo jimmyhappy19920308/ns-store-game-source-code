@@ -14,7 +14,7 @@ export default {
         process.env.VUE_APP_CUSTOM_PATH
       }/products?page=${page}`;
 
-      if (this.state.filterCategory !== 'All') {
+      if (context.state.category !== 'All') {
         api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/products/all`;
       }
 
