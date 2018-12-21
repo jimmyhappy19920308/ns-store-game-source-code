@@ -49,9 +49,9 @@ export default {
     },
   },
   getters: {
-    filterProducts(state, category) {
+    filterProducts(state) {
       if (state.category !== 'All') {
-        return state.products.filter(item => item.category === category);
+        return state.products.filter(item => item.category === state.category);
       }
 
       return state.products;
