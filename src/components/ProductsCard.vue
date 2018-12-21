@@ -47,9 +47,13 @@
     </div>
     <!-- tab-content end -->
 
+    <div>
+      {{ $store.state['productsModules']['category'] }}
+    </div>
+
     <!-- pagination -->
     <ProductsPagination
-      v-if="this.$store.state.category === 'All'"
+      v-if="$store.state['productsModules']['category'] === 'All'"
     ></ProductsPagination>
   </div>
 </template>
