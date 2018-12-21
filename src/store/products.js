@@ -32,8 +32,8 @@ export default {
     },
     filterCategory(context, category) {
       context.commit('CATEGORY', category);
-      if (this.state.category !== 'All') {
-        context.dispatch('productsModules/getProducts');
+      if (category !== 'All') {
+        context.dispatch('getProducts');
       }
     },
   },
@@ -49,9 +49,9 @@ export default {
     },
   },
   getters: {
-    filterProducts(state) {
+    filterProducts(state, category) {
       if (state.category !== 'All') {
-        return state.products.filter(item => item.category === state.category);
+        return state.products.filter(item => item.category === category);
       }
 
       return state.products;
