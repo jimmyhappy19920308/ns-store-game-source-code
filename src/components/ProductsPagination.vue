@@ -35,6 +35,7 @@ export default {
     getCurrentPage(page) {
       // vm.$emit('get-current-page', page);
       this.$store.dispatch('productsModules/getProducts', page);
+      window.scrollTo(0, 0);
     },
   },
   created() {
