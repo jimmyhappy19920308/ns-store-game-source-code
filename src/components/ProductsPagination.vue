@@ -38,9 +38,8 @@ export default {
   },
   methods: {
     getCurrentPage(page) {
-      const vm = this;
-
-      vm.$emit('get-current-page', page);
+      // vm.$emit('get-current-page', page);
+      this.$store.dispatch('getProducts', page);
     },
   },
   created() {
