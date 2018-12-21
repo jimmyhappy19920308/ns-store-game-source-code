@@ -49,9 +49,7 @@
 export default {
   methods: {
     selectCategory(category) {
-      const vm = this;
-
-      vm.$bus.$emit('filter-category', category);
+      this.$store.dispatch('productsModules/filterCategory', category);
     },
   },
 };
