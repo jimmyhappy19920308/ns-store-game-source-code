@@ -5,7 +5,7 @@ export default {
   state: {
     products: [],
     product: {},
-    filterCategory: 'All',
+    category: 'All',
     pagination: {},
   },
   actions: {
@@ -30,6 +30,12 @@ export default {
         }
       });
     },
+    filterCategory(context, category) {
+      context.commit('CATEGORY', category);
+      if (this.state.category !== 'All') {
+        context.dispatch('productsModules/getProducts');
+      }
+    },
   },
   mutations: {
     PRODUCTS(state, payload) {
@@ -38,11 +44,14 @@ export default {
     PAGINATION(state, payload) {
       state.pagination = payload;
     },
+    CATEGORY(state, payload) {
+      state.filterCategory = payload;
+    },
   },
   getters: {
     filterProducts(state) {
-      if (state.filterCategory !== 'All') {
-        return state.products.filter(item => item.category === state.filterCategory);
+      if (state.category !== 'All') {
+        return state.products.filter(item => item.category === state.category);
       }
 
       return state.products;

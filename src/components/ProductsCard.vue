@@ -49,7 +49,7 @@
 
     <!-- pagination -->
     <ProductsPagination
-      v-if="filterCategory === 'All'"
+      v-if="this.$store.state.filterCategory === 'All'"
       :parent-pagination="pagination"
       @get-current-page="getProducts"
     ></ProductsPagination>
