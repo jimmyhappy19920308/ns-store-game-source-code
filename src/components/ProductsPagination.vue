@@ -31,11 +31,6 @@
 
 <script>
 export default {
-  props: {
-    parentPagination: {
-      type: Object,
-    },
-  },
   methods: {
     getCurrentPage(page) {
       // vm.$emit('get-current-page', page);
