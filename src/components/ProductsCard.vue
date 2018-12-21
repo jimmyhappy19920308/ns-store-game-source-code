@@ -66,11 +66,7 @@ export default {
   },
   data() {
     return {
-      products: [],
-      product: {},
       pagination: {},
-      filterCategory: 'All',
-      isLoading: false,
     };
   },
   computed: {
