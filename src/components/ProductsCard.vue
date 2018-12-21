@@ -50,7 +50,7 @@
     <!-- pagination -->
     <ProductsPagination
       v-if="this.$store.state.category === 'All'"
-      :parent-pagination="pagination"
+      :parent-pagination="this.$store.state.pagination"
       @get-current-page="getProducts"
     ></ProductsPagination>
   </div>
