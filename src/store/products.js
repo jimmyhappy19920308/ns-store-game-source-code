@@ -45,7 +45,7 @@ export default {
       state.pagination = payload;
     },
     CATEGORY(state, payload) {
-      state.filterCategory = payload;
+      state.category = payload;
     },
   },
   getters: {
