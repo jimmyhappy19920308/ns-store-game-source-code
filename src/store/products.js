@@ -30,8 +30,8 @@ export default {
         }
       });
     },
-    getProductDetail(context, payload) {
-      context.commit('PRODUCT_DETAIL', payload);
+    setProductNum(context, payload) {
+      context.commit('PRODUCT_NUM', payload);
     },
     filterCategory(context, category) {
       context.commit('CATEGORY', category);
@@ -49,7 +49,7 @@ export default {
     CATEGORY(state, payload) {
       state.category = payload;
     },
-    PRODUCT_DETAIL(state, payload) {
+    PRODUCT_NUM(state, payload) {
       state.product.num = payload;
     },
   },
