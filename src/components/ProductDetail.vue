@@ -23,7 +23,7 @@
             </div>
             <hr />
             <div class="input-group mt-3">
-              <select class="form-control mr-1" v-model="initProduct.num">
+              <select class="form-control mr-1" :value="initProduct.num" @input="updateProductNum">
                 <option value="0" disabled>--請選擇--</option>
                 <option :value="num" v-for="num in 10" :key="num"
                   >{{ num }} {{ newProduct.unit }}</option
@@ -115,7 +115,8 @@ export default {
        */
       if (cart.qty === 0) {
         cart.qty = 1;
-        vm.newProduct.num = 1;
+        // vm.newProduct.num = 1;
+        this.$store.dispatch('productsModules/setProductNum', 1);
       }
 
       vm.isLoading = true;
@@ -130,10 +131,13 @@ export default {
         }
       });
     },
+    updateProductNum(e) {
+      this.$store.dispatch('productsModules/setProductNum', e.target.value);
+    },
   },
   created() {
     // vm.newProduct.num = 0; // 讓下拉選單顯示預設值 -> 請選擇
-    this.$store.dispatch('productsModules/getProductDetail', 0);
+    this.$store.dispatch('productsModules/setProductNum', 0);
   },
 };
 </script>
