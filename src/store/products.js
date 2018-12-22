@@ -4,6 +4,7 @@ export default {
   namespaced: true,
   state: {
     products: [],
+    product: {},
     category: 'All',
     pagination: {},
   },
@@ -29,6 +30,9 @@ export default {
         }
       });
     },
+    getProductDetail(context, payload) {
+      context.commit('PRODUCT_DETAIL', payload);
+    },
     filterCategory(context, category) {
       context.commit('CATEGORY', category);
 
@@ -45,6 +49,9 @@ export default {
     CATEGORY(state, payload) {
       state.category = payload;
     },
+    PRODUCT_DETAIL(state, payload) {
+      state.product.num = payload;
+    },
   },
   getters: {
     filterProducts(state) {
@@ -53,6 +60,9 @@ export default {
       }
 
       return state.products;
+    },
+    initProduct(state) {
+      return state.product;
     },
   },
 };

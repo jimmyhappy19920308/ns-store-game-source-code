@@ -23,7 +23,7 @@
             </div>
             <hr />
             <div class="input-group mt-3">
-              <select class="form-control mr-1" v-model="newProduct.num">
+              <select class="form-control mr-1" v-model="initProduct.num">
                 <option value="0" disabled>--請選擇--</option>
                 <option :value="num" v-for="num in 10" :key="num"
                   >{{ num }} {{ newProduct.unit }}</option
@@ -32,7 +32,7 @@
               <a
                 href="shoppingCart-checkout.html"
                 class="btn btn-danger"
-                @click.prevent="addToCart(newProduct.id, newProduct.num)"
+                @click.prevent="addToCart(newProduct.id, initProduct.num)"
               >
                 <i class="fa fa-cart-plus" aria-hidden="true"></i> 加入購物車
               </a>
@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   props: {
     product: {
@@ -93,6 +95,9 @@ export default {
       newProduct: this.product,
       isLoading: false,
     };
+  },
+  computed: {
+    ...mapGetters('productsModules', ['initProduct']),
   },
   methods: {
     addToCart(id, qty) {
@@ -127,9 +132,8 @@ export default {
     },
   },
   created() {
-    const vm = this;
-
     // vm.newProduct.num = 0; // 讓下拉選單顯示預設值 -> 請選擇
+    this.$store.dispatch('productsModules/getProductDetail', 0);
   },
 };
 </script>
