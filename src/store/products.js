@@ -4,7 +4,6 @@ export default {
   namespaced: true,
   state: {
     products: [],
-    product: {},
     category: 'All',
     pagination: {},
   },
