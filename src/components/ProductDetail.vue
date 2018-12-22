@@ -23,10 +23,10 @@
             </div>
             <hr />
             <div class="input-group mt-3">
-              <select class="form-control mr-1" v-model="product.num">
+              <select class="form-control mr-1" v-model="newProduct.num">
                 <option value="0" disabled>--請選擇--</option>
                 <option :value="num" v-for="num in 10" :key="num"
-                  >{{ num }} {{ product.unit }}</option
+                  >{{ num }} {{ newProduct.unit }}</option
                 >
               </select>
               <a
@@ -129,7 +129,7 @@ export default {
   created() {
     const vm = this;
 
-    vm.newProduct.num = 0; // 讓下拉選單顯示預設值 -> 請選擇
+    // vm.newProduct.num = 0; // 讓下拉選單顯示預設值 -> 請選擇
   },
 };
 </script>
