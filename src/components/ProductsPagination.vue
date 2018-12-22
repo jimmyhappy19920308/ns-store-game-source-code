@@ -1,11 +1,16 @@
 <template>
   <div>
     <nav aria-label="Page navigation" class="my-5">
-      <ul class="pagination justify-content-center" v-if="$store.state['productsModules']['pagination']">
+      <ul
+        class="pagination justify-content-center"
+        v-if="$store.state['productsModules']['pagination']"
+      >
         <li
           class="page-item"
           :class="{ disabled: $store.state['productsModules']['pagination'].has_pre === false }"
-          @click.prevent="getCurrentPage($store.state['productsModules']['pagination'].current_page - 1)"
+          @click.prevent="
+            getCurrentPage($store.state['productsModules']['pagination'].current_page - 1)
+          "
         >
           <a class="page-link" href="#" tabindex="-1">Previous</a>
         </li>
@@ -20,7 +25,9 @@
         <li
           class="page-item"
           :class="{ disabled: $store.state['productsModules']['pagination'].has_next === false }"
-          @click.prevent="getCurrentPage($store.state['productsModules']['pagination'].current_page + 1)"
+          @click.prevent="
+            getCurrentPage($store.state['productsModules']['pagination'].current_page + 1)
+          "
         >
           <a class="page-link" href="#">Next</a>
         </li>
