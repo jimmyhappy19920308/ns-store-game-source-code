@@ -99,9 +99,7 @@ import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      coupon: '',
       cartsAlert: '購物車尚未有任何商品',
-      couponErrorMessage: '',
     };
   },
   created() {
@@ -117,9 +115,7 @@ export default {
       this.$store.dispatch('cartsModules/getCart');
     },
     removeCartProduct(id) {
-
       this.$store.dispatch('cartsModules/removeCartProduct', id);
-
     },
     applyCoupon() {
       const vm = this;
