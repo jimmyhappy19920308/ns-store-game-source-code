@@ -48,6 +48,25 @@ export default {
         }
       });
     },
+    removeCartProduct(context, id) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/cart/${id}`;
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      axios.delete(api).then(response => {
+        if (response.data.success) {
+          context.dispatch('getCart');
+
+          context.dispatch('updateLoading', false, { root: true });
+
+          console.log(response.data.message);
+        } else {
+          console.log(response.data.message);
+        }
+      });
+    },
   },
   mutations: {
     CARTS(state, payload) {
