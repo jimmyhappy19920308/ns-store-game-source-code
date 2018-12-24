@@ -3,12 +3,42 @@ import axios from 'axios';
 export default {
   namespaced: true,
   state: {
-    products: [],
+    products: [
+      {
+        category: '衣服3',
+        content: '這是內容',
+        description: 'Sit down please 名設計師設計',
+        id: '-L9tH8jxVb2Ka_DYPwng',
+        image: 'test.testtest',
+        is_enabled: 1,
+        num: 1,
+        origin_price: 100,
+        price: 600,
+        title: '[賣]動物園造型衣服3',
+        unit: '個',
+      },
+    ],
     product: {
+      category: '衣服3',
+      content: '這是內容',
+      description: 'Sit down please 名設計師設計',
+      id: '-L9tH8jxVb2Ka_DYPwng',
+      image: 'test.testtest',
+      is_enabled: 1,
       num: 0,
+      origin_price: 100,
+      price: 600,
+      title: '[賣]動物園造型衣服3',
+      unit: '個',
     },
     category: 'All',
-    pagination: {},
+    pagination: {
+      total_pages: 1,
+      current_page: 1,
+      has_pre: false,
+      has_next: false,
+      category: null,
+    },
   },
   actions: {
     getProducts(context, page) {
