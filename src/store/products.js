@@ -4,7 +4,9 @@ export default {
   namespaced: true,
   state: {
     products: [],
-    product: {},
+    product: {
+      num: 0,
+    },
     category: 'All',
     pagination: {},
   },
@@ -61,8 +63,8 @@ export default {
 
       return state.products;
     },
-    initProduct(state) {
-      return state.product;
+    initProductNum(state) {
+      return state.product.num;
     },
   },
 };
