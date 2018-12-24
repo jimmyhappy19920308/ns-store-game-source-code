@@ -3,7 +3,7 @@
     <div class="container h-100">
       <div class="row">
         <div class="col">
-          <section class="row justify-content-center mt-5" v-if="price.final_total">
+          <section class="row justify-content-center mt-5" v-if="carts.length > 0">
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header" id="headingOne">
@@ -80,7 +80,7 @@
             <p class="text-center h3 text-danger mb-0">{{ cartsAlert }}</p>
           </div>
           <div class="d-flex justify-content-center mt-3">
-            <router-link class="btn btn-primary" to="/" v-if="!price.final_total"
+            <router-link class="btn btn-primary" to="/" v-if="carts.length <= 0"
               >返回選購</router-link
             >
             <router-link class="btn btn-danger" to="" @click.native="confirmOrder" v-else
@@ -94,6 +94,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -105,25 +107,14 @@ export default {
   created() {
     const vm = this;
 
-    vm.getCarts();
+    vm.getCart();
+  },
+  computed: {
+    ...mapGetters('cartsModules', ['carts', 'price']),
   },
   methods: {
-    getCarts() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
-
-      vm.isLoading = true;
-
-      vm.$http.get(api).then(response => {
-        if (response.data.success) {
-          vm.$set(vm, 'carts', response.data.data.carts);
-          vm.$set(vm.price, 'total', response.data.data.total);
-          vm.$set(vm.price, 'final_total', response.data.data.final_total);
-          vm.isLoading = false;
-        } else {
-          console.log(response.data.message);
-        }
-      });
+    getCart() {
+      this.$store.dispatch('cartsModules/getCart');
     },
     removeCartProduct(index, id) {
       const vm = this;
