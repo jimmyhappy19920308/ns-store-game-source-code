@@ -10,11 +10,12 @@
       <span class="badge badge-pill badge-danger">{{ shoppingCartCount }}</span>
       <span class="sr-only">unread messages</span>
     </button>
-    <ShoppingCartModal :parent-carts="carts" :parent-price="price"></ShoppingCartModal>
+    <ShoppingCartModal></ShoppingCartModal>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import $ from 'jquery';
 import ShoppingCartModal from './ShoppingCartModal.vue';
 
@@ -22,41 +23,15 @@ export default {
   components: {
     ShoppingCartModal,
   },
-  data() {
-    return {
-      shoppingCartCount: 0,
-      carts: [],
-      price: {},
-    };
+  computed: {
+    ...mapGetters('cartsModules', ['shoppingCartCount']),
   },
   methods: {
-    getShoppingCart() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
-
-      vm.$http.get(api).then(response => {
-        if (response.data.success) {
-          vm.$set(vm, 'carts', response.data.data.carts);
-          vm.$set(vm.price, 'total', response.data.data.total);
-          vm.$set(vm.price, 'final_total', response.data.data.total);
-          vm.shoppingCartCount = vm.carts.length;
-        }
-      });
-    },
     openCartModal() {
       $('#cartModal')
         .appendTo('body')
         .modal('show');
     },
-  },
-  created() {
-    const vm = this;
-
-    vm.getShoppingCart();
-
-    vm.$bus.$on('get-cart-count', () => {
-      vm.getShoppingCart();
-    });
   },
 };
 </script>
