@@ -31,7 +31,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-danger btn-sm"
-                      @click.prevent="removeProduct(item.id)"
+                      @click.prevent="removeCartProduct(item.id)"
                     >
                       <i class="far fa-trash-alt"></i>
                     </button>
@@ -76,25 +76,8 @@ export default {
     ...mapGetters('cartsModules', ['carts', 'price']),
   },
   methods: {
-    removeProduct(id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/cart/${id}`;
-
-      vm.isLoading = true;
-
-      vm.$http.delete(api).then(response => {
-        if (response.data.success) {
-          vm.$bus.$emit('get-cart-count');
-
-          vm.isLoading = false;
-
-          console.log(response.data.message);
-        } else {
-          console.log(response.data.message);
-        }
-      });
+    removeCartProduct(id) {
+      this.$store.dispatch('cartsModules/removeCartProduct', id);
     },
     goToCheckoutComponent() {
       const vm = this;
