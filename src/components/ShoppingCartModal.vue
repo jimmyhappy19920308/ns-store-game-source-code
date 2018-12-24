@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <!-- Modal -->
     <div
       class="modal fade"
@@ -19,7 +18,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <table class="table" v-if="newPrice.final_total">
+            <table class="table" v-if="carts.length > 0">
               <thead>
                 <th></th>
                 <th>品名</th>
@@ -27,7 +26,7 @@
                 <th>單價</th>
               </thead>
               <tbody>
-                <tr v-for="item in computeCarts" :key="item.id">
+                <tr v-for="item in carts" :key="item.id">
                   <td class="align-middle">
                     <button
                       type="button"
@@ -45,7 +44,7 @@
               <tfoot>
                 <tr>
                   <td colspan="3" class="text-right text-danger">總計</td>
-                  <td class="text-right text-danger h4">{{ newPrice.final_total | currency }}</td>
+                  <td class="text-right text-danger h4">{{ price.final_total | currency }}</td>
                 </tr>
               </tfoot>
             </table>
@@ -53,7 +52,7 @@
               <p class="text-center h3 text-danger mb-0">{{ cartsAlert }}</p>
             </div>
           </div>
-          <div class="modal-footer" v-if="newPrice.final_total">
+          <div class="modal-footer" v-if="price.final_total">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             <a class="btn btn-danger" href="#" @click.prevent="goToCheckoutComponent"> 結帳 </a>
           </div>
@@ -64,62 +63,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import $ from 'jquery';
 
 export default {
-  props: {
-    parentCarts: {
-      type: Array,
-    },
-    parentPrice: {
-      type: Object,
-    },
-  },
   data() {
     return {
-      newCarts: [
-        {
-          coupon: {
-            code: 'testCode',
-            due_date: 6547658,
-            id: '-L9uIs5EfPibJpwwTMhN',
-            is_enabled: 1,
-            percent: 60,
-            title: '超級特惠價格',
-          },
-          final_total: 2160,
-          id: '-LATwxc_bIJu-AR4AlNj',
-          product: {
-            category: '衣服3',
-            content: '這是內容',
-            description: 'Sit down please 名設計師設計',
-            id: '-L9tH8jxVb2Ka_DYPwng',
-            image: 'test.testtest',
-            is_enabled: 1,
-            num: 1,
-            origin_price: 500,
-            price: 600,
-            title: '[賣]動物園造型衣服3',
-            unit: '個',
-          },
-          product_id: '-L9tH8jxVb2Ka_DYPwng',
-          qty: 6,
-          total: 3600,
-        },
-      ],
-      newPrice: this.parentPrice,
       cartsAlert: '購物車尚未有任何商品',
-      isLoading: false,
     };
   },
   computed: {
-    computeCarts() {
-      const vm = this;
-
-      vm.newCarts = vm.parentCarts;
-
-      return vm.newCarts;
-    },
+    ...mapGetters('cartsModules', ['carts', 'price']),
   },
   methods: {
     removeProduct(id) {
@@ -152,6 +106,9 @@ export default {
 
       vm.$router.push('/checkout');
     },
+  },
+  created() {
+    this.$store.dispatch('cartsModules/getCart');
   },
 };
 </script>
