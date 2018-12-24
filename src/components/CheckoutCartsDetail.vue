@@ -109,6 +109,7 @@ export default {
   },
   computed: {
     ...mapGetters('cartsModules', ['carts', 'price']),
+    ...mapGetters('couponModules', ['coupon']),
   },
   methods: {
     getCart() {
