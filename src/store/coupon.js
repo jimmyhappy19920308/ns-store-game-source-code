@@ -7,7 +7,7 @@ export default {
     couponErrorMessage: '',
   },
   actions: {
-    applyCoupon(context, couponCode) {
+    applyCoupon(context) {
       const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/coupon`;
       const coupon = {
         code: context.state.coupon,
@@ -37,6 +37,11 @@ export default {
   mutations: {
     ERROR_MESSAGE(state, payload) {
       state.couponErrorMessage = payload;
+    },
+  },
+  getters: {
+    coupon(state) {
+      return state.coupon;
     },
   },
 };
