@@ -29,5 +29,31 @@ export default {
         }
       });
     },
+    getCart(context) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
+
+      axios.get(api).then(response => {
+        if (response.data.success) {
+          context.commit('CARTS', response.data.data.carts);
+          context.commit('PRICE', response.data.data.total);
+          context.commit('PRICE_FINAL_TOTAL', response.data.data.final_total);
+          context.commit('CART_COUNT');
+        }
+      });
+    },
+  },
+  mutations: {
+    CARTS(state, payload) {
+      state.carts = payload;
+    },
+    PRICE_TOTAL(state, payload) {
+      state.price.total = payload;
+    },
+    PRICE_FINAL_TOTAL(state, payload) {
+      state.price.final_total = payload;
+    },
+    CART_COUNT(state) {
+      state.shoppingCartCount = state.carts.length;
+    },
   },
 };
