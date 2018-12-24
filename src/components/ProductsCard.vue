@@ -75,6 +75,6 @@ export default {
   },
   created() {
     this.$store.dispatch('cartsModules/getCart');
-  }
+  },
 };
 </script>
