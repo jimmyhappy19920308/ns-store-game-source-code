@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <div class="container main-contant mb-1 mt-4">
       <!-- <nav aria-label="breadcrumb" role="navigation">
         <ol class="breadcrumb bg-transparent pl-0">
@@ -23,7 +22,7 @@
             </div>
             <hr />
             <div class="input-group mt-3">
-              <select class="form-control mr-1" :value="initProduct.num" @input="updateProductNum">
+              <select class="form-control mr-1" :value="initProductNum" @input="updateProductNum">
                 <option value="0" disabled>--請選擇--</option>
                 <option :value="num" v-for="num in 10" :key="num"
                   >{{ num }} {{ newProduct.unit }}</option
@@ -32,7 +31,7 @@
               <a
                 href="shoppingCart-checkout.html"
                 class="btn btn-danger"
-                @click.prevent="addToCart(newProduct.id, initProduct.num)"
+                @click.prevent="addToCart(newProduct.id, initProductNum)"
               >
                 <i class="fa fa-cart-plus" aria-hidden="true"></i> 加入購物車
               </a>
@@ -93,43 +92,14 @@ export default {
   data() {
     return {
       newProduct: this.product,
-      isLoading: false,
     };
   },
   computed: {
-    ...mapGetters('productsModules', ['initProduct']),
+    ...mapGetters('productsModules', ['initProductNum']),
   },
   methods: {
     addToCart(id, qty) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-
-      /*
-       * 沒有用預設參數是因為如果都不選數量就加入購物車 qty 會變成 0
-       * 因此另外在沒選數量時將 qty 賦值 1
-       * 再將下拉選單的商品數量修改為 1 來讓畫面與加入購物車的數量一致
-       */
-      if (cart.qty === 0) {
-        cart.qty = 1;
-        // vm.newProduct.num = 1;
-        this.$store.dispatch('productsModules/setProductNum', 1);
-      }
-
-      vm.isLoading = true;
-
-      vm.$http.post(api, { data: cart }).then(response => {
-        if (response.data.success) {
-          vm.$bus.$emit('get-cart-count');
-
-          vm.isLoading = false;
-
-          console.log(response.data.message);
-        }
-      });
+      this.$store.dispatch('cartsModules/addToCart', { id, qty });
     },
     updateProductNum(e) {
       this.$store.dispatch('productsModules/setProductNum', e.target.value);
