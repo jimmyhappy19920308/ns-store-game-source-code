@@ -24,12 +24,12 @@
                     <th>單價</th>
                   </thead>
                   <tbody>
-                    <tr v-for="(item, index) in carts" :key="item.id">
+                    <tr v-for="item in carts" :key="item.id">
                       <td class="align-middle">
                         <button
                           type="button"
                           class="btn btn-outline-danger btn-sm"
-                          @click.prevent="removeCartProduct(index, item.id)"
+                          @click.prevent="removeCartProduct(item.id)"
                         >
                           <i class="far fa-trash-alt"></i>
                         </button>
@@ -116,29 +116,10 @@ export default {
     getCart() {
       this.$store.dispatch('cartsModules/getCart');
     },
-    removeCartProduct(index, id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/cart/${id}`;
+    removeCartProduct(id) {
 
-      vm.carts.splice(index, 1);
+      this.$store.dispatch('cartsModules/removeCartProduct', id);
 
-      vm.isLoading = true;
-
-      vm.$http.delete(api).then(response => {
-        if (response.data.success) {
-          vm.getCarts();
-
-          vm.$bus.$emit('get-cart-count'); // 重新取得右下購物車的商品名稱、價格與數量
-
-          vm.isLoading = false;
-
-          console.log(response.data.message);
-        } else {
-          console.log(response.data.message);
-        }
-      });
     },
     applyCoupon() {
       const vm = this;
