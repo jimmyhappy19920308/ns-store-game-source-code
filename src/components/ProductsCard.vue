@@ -70,32 +70,11 @@ export default {
       this.$store.dispatch('productsModules/getProducts', page);
     },
     addCart(id, qty = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-
-      this.$store.dispatch('updateLoading', true);
-
-      vm.$http.post(api, { data: cart }).then(response => {
-        if (response.data.success) {
-          vm.$bus.$emit('get-cart-count');
-
-          this.$store.dispatch('updateLoading', false);
-
-          console.log(response.data.message);
-        } else {
-          console.log(response.data.message);
-        }
-      });
+      this.$store.dispatch('cartsModules/addToCart', { id, qty });
     },
   },
   created() {
-    const vm = this;
-
-    vm.getProducts();
-  },
+    this.$store.dispatch('cartsModules/getCart');
+  }
 };
 </script>
