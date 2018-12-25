@@ -10,7 +10,8 @@
           id="exampleInputName"
           name="姓名"
           placeholder="請輸入姓名"
-          v-model="name"
+          :value="name"
+          @input="updateName"
           v-validate="'required'"
         />
         <span class="text-danger" v-if="errors.has('姓名')">{{ errors.first('姓名') }}</span>
@@ -25,7 +26,8 @@
           name="email"
           placeholder="請輸入信箱"
           v-validate="'required|email'"
-          v-model="email"
+          :value="email"
+          @input="updateEmail"
         />
         <span class="text-danger" v-if="errors.has('email')"> {{ errors.first('email') }} </span>
       </div>
@@ -37,7 +39,8 @@
           id="exampleInputPhone"
           name="手機號碼"
           placeholder="0912345678"
-          v-model="phone"
+          :value="phone"
+          @input="updatePhone"
           v-validate="{ required: true, regex: /^09\d{8}$/ }"
         />
         <span class="text-danger" v-if="errors.has('手機號碼')">{{
@@ -52,7 +55,8 @@
           id="exampleInputAddress"
           name="address"
           placeholder="請輸入地址"
-          v-model="address"
+          :value="address"
+          @input="updateAddress"
           v-validate="'required'"
         />
         <span class="text-danger" v-if="errors.has('address')">請輸入地址</span>
@@ -66,7 +70,8 @@
           id="exampleInputMessage"
           name="message"
           placeholder="請輸入留言"
-          v-model="message"
+          :value="message"
+          @input="updateMessage"
         >
         </textarea>
       </div>
@@ -133,6 +138,21 @@ export default {
         }
       });
     },
+    updateName(e) {
+      this.$store.dispatch('customerFormModules/updateName', e.target.value);
+    },
+    updateEmail(e) {
+      this.$store.dispatch('customerFormModules/updateEmail', e.target.value);
+    },
+    updatePhone(e) {
+      this.$store.dispatch('customerFormModules/updatePhone', e.target.value);
+    },
+    updateAddress(e) {
+      this.$store.dispatch('customerFormModules/updateAddress', e.target.value);
+    },
+    updateMessage(e) {
+      this.$store.dispatch('customerFormModules/updateMessage', e.target.value);
+    }
   },
 };
 </script>
