@@ -82,15 +82,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: '',
-      email: '',
-      phone: '',
-      address: '',
-      message: '',
-    };
-  },
   methods: {
     goBack() {
       const vm = this;
