@@ -58,7 +58,8 @@
                     type="text"
                     class="form-control"
                     placeholder="請輸入優惠碼"
-                    v-model.trim="coupon"
+                    :value="coupon"
+                    @input="updateCoupon"
                   />
                   <div class="input-group-append">
                     <button
@@ -97,11 +98,6 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  data() {
-    return {
-      cartsAlert: '購物車尚未有任何商品',
-    };
-  },
   created() {
     const vm = this;
 
@@ -109,7 +105,7 @@ export default {
   },
   computed: {
     ...mapGetters('cartsModules', ['carts', 'price']),
-    ...mapGetters('couponModules', ['coupon']),
+    ...mapGetters('couponModules', ['coupon', 'couponErrorMessage', 'cartsAlert']),
   },
   methods: {
     getCart() {
@@ -119,45 +115,23 @@ export default {
       this.$store.dispatch('cartsModules/removeCartProduct', id);
     },
     applyCoupon() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/coupon`;
-      const coupon = {
-        code: vm.coupon,
-      };
-
-      vm.isLoading = true;
-
-      vm.$http.post(api, { data: coupon }).then(response => {
-        if (response.data.success) {
-          vm.getCarts();
-
-          vm.$bus.$emit('get-cart-count'); // 重新取得右下購物車的商品名稱、價格與數量
-
-          vm.isLoading = false;
-
-          vm.couponErrorMessage = '';
-
-          console.log(response.data.message);
-        } else {
-          vm.isLoading = false;
-
-          vm.couponErrorMessage = response.data.message;
-
-          console.log(response.data.message);
-        }
-      });
+      this.$store.dispatch('couponModules/applyCoupon', this.coupon);
+      console.log(this.coupon);
+    },
+    updateCoupon(e) {
+      this.$store.dispatch('couponModules/updateCoupon', e.target.value);
     },
     confirmOrder() {
       const vm = this;
 
-      vm.isLoading = true;
+      this.$store.dispatch('updateLoading', true);
 
       setTimeout(() => {
         vm.$router.push({
           name: 'CheckoutCustomerForm',
         });
 
-        vm.isLoading = false;
+        this.$store.dispatch('updateLoading', false);
       }, 200);
     },
   },
