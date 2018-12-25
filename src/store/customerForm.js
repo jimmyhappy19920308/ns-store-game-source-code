@@ -1,3 +1,7 @@
+import axios from 'axios';
+
+import router from '../router';
+
 export default {
   namespaced: true,
   state: {
@@ -22,6 +26,37 @@ export default {
     },
     updateMessage(context, message) {
       context.commit('MESSAGE', message);
+    },
+    sendOrder(context) {
+      console.log();
+      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
+      const order = {
+        user: {
+          name: context.state.name,
+          email: context.state.email,
+          tel: context.state.phone,
+          address: context.state.address,
+        },
+        message: context.state.message,
+      };
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      axios.post(api, { data: order }).then(response => {
+        if (response.data.success) {
+          context.dispatch('cartsModules/getCart', null, { root: true });
+
+          context.dispatch('updateLoading', false, { root: true });
+          router.push({
+            name: 'CheckoutConfirmToPay',
+            params: {
+              orderId: response.data.orderId,
+            },
+          });
+        } else {
+          console.log(response.data.message);
+        }
+      });
     },
   },
   mutations: {
