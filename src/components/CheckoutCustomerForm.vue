@@ -81,7 +81,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
+  computed: {
+    ...mapGetters('customerFormModules', ['name', 'email', 'phone', 'address', 'message']),
+  },
   methods: {
     goBack() {
       const vm = this;
