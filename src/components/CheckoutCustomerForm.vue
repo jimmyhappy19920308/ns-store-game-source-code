@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <h5 class="py-3 mt-5 mb-2 text-center bg-light">訂購人資訊</h5>
     <form>
       <div class="form-group">
@@ -90,7 +89,6 @@ export default {
       phone: '',
       address: '',
       message: '',
-      isLoading: false,
     };
   },
   methods: {
