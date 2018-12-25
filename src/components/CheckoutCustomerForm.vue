@@ -99,43 +99,12 @@ export default {
       vm.$bus.$emit('get-cart-count');
     },
     sendOrder() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
-      const order = {
-        user: {
-          name: vm.name,
-          email: vm.email,
-          tel: vm.phone,
-          address: vm.address,
-        },
-        message: vm.message,
-      };
-
-      vm.isLoading = true;
-
-      vm.$validator.validate().then(result => {
+      this.$validator.validate().then(result => {
         if (!result) {
           // do stuff if not valid.
-          vm.isLoading = false;
-
-          console.log('請確認表單皆正確輸入');
+          context.dispatch('updateLoading', false, { root: true });
         } else {
-          vm.$http.post(api, { data: order }).then(response => {
-            if (response.data.success) {
-              vm.$bus.$emit('get-cart-count');
-
-              vm.isLoading = false;
-
-              vm.$router.push({
-                name: 'CheckoutConfirmToPay',
-                params: {
-                  orderId: response.data.orderId,
-                },
-              });
-            } else {
-              console.log(response.data.message);
-            }
-          });
+          this.$store.dispatch('customerFormModules/sendOrder');
         }
       });
     },
