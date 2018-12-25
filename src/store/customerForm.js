@@ -54,6 +54,7 @@ export default {
             },
           });
         } else {
+          context.dispatch('updateLoading', false, { root: true });
           console.log(response.data.message);
         }
       });
