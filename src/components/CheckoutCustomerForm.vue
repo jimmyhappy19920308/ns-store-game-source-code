@@ -87,6 +87,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+
 export default {
   computed: {
     ...mapGetters('customerFormModules', ['name', 'email', 'phone', 'address', 'message']),
@@ -152,7 +153,7 @@ export default {
     },
     updateMessage(e) {
       this.$store.dispatch('customerFormModules/updateMessage', e.target.value);
-    }
+    },
   },
 };
 </script>
