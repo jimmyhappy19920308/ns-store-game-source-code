@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import productsModules from './products';
 import cartsModules from './carts';
 import couponModules from './coupon';
+import customerFormModules from './customerForm';
 
 Vue.use(Vuex);
 
@@ -30,5 +31,6 @@ export default new Vuex.Store({
     productsModules,
     cartsModules,
     couponModules,
+    customerFormModules,
   },
 });
