@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading :active.sync="isLoading"></loading>
     <div class="container main-contant py-5">
       <p class="text-center mb-3 text-secondary h3">結帳</p>
       <section class="form-row align-items-center text-center">
@@ -41,3 +42,13 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters(['isLoading']),
+  },
+};
+</script>
