@@ -59,11 +59,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: {
     orderId: {
       type: String,
     },
+  },
+  computed: {
+    ...mapState('orderModules', ['order']),
   },
   methods: {
     getOrder() {
