@@ -49,9 +49,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="text-right" v-if="!order.is_paid">
-          <button class="btn btn-secondary" @click.prevent="goHome">繼續逛逛</button>
-          <button class="btn btn-danger" @click.prevent="payOrder">確認付款去</button>
+        <div class="d-flex justify-content-center mt-5" v-if="!order.is_paid">
+          <button class="btn btn-secondary mr-5" @click.prevent="goHome">繼續逛逛</button>
+          <button class="btn btn-danger" @click.prevent="payOrder">確認付款</button>
         </div>
       </form>
     </div>
