@@ -61,10 +61,8 @@ export default {
           context.dispatch('getCart');
 
           context.dispatch('updateLoading', false, { root: true });
-
-          console.log(response.data.message);
         } else {
-          console.log(response.data.message);
+          context.dispatch('updateLoading', false, { root: true });
         }
       });
     },
@@ -92,10 +90,8 @@ export default {
           context.dispatch('getCart');
 
           context.dispatch('updateLoading', false, { root: true });
-
-          console.log(response.data.message);
         } else {
-          console.log(response.data.message);
+          context.dispatch('updateLoading', false, { root: true });
         }
       });
     },
