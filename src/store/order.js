@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
   namespaced: true,
   state: {
@@ -33,6 +35,31 @@ export default {
         name: 'test',
         tel: '0912346768',
       },
+    },
+  },
+  actions: {
+    getOrder(context, orderId) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/order/${orderId}`;
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      axios.get(api).then(response => {
+        if (response.data.success) {
+          context.commit('ORDER', response.data.order);
+
+          context.dispatch('updateLoading', false, { root: true });
+        } else {
+          context.dispatch('updateLoading', false, { root: true });
+          console.log(response.data.message);
+        }
+      });
+    },
+  },
+  mutations: {
+    ORDER(state, order) {
+      state.order = order;
     },
   },
 };
