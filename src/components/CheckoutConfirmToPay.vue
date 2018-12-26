@@ -72,7 +72,8 @@ export default {
   },
   methods: {
     getOrder() {
-      this.$store.dispatch('orderModules/getOrder');
+      const vm = this;
+      this.$store.dispatch('orderModules/getOrder', vm.orderId);
     },
     payOrder() {
       const vm = this;
