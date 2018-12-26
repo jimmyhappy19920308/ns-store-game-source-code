@@ -1,3 +1,3 @@
 module.exports = {
-  baseUrl: '/ns-game-store/
+  baseUrl: '/ns-game-store/',
 };
