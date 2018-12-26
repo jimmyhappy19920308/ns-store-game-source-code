@@ -102,7 +102,7 @@ export default {
       this.$validator.validate().then(result => {
         if (!result) {
           // do stuff if not valid.
-          context.dispatch('updateLoading', false, { root: true });
+          this.$store.dispatch('updateLoading', false, { root: true });
         } else {
           this.$store.dispatch('customerFormModules/sendOrder');
         }
