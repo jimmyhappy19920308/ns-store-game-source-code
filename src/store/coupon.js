@@ -23,14 +23,10 @@ export default {
           context.dispatch('updateLoading', false, { root: true });
 
           context.commit('ERROR_MESSAGE', '');
-
-          console.log(response.data.message);
         } else {
           context.dispatch('updateLoading', false, { root: true });
 
           context.commit('ERROR_MESSAGE', response.data.message);
-
-          console.log(response.data.message);
         }
       });
     },

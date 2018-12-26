@@ -52,7 +52,6 @@ export default {
           context.dispatch('updateLoading', false, { root: true });
         } else {
           context.dispatch('updateLoading', false, { root: true });
-          console.log(response.data.message);
         }
       });
     },
@@ -68,12 +67,8 @@ export default {
           context.dispatch('getOrder', orderId);
 
           context.dispatch('updateLoading', false, { root: true });
-
-          console.log(response.data.message);
         } else {
           context.dispatch('updateLoading', false, { root: true });
-
-          console.log(response.data.messate);
         }
       });
     },

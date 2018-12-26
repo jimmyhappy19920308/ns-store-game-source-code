@@ -58,7 +58,7 @@ export default {
           context.commit('PAGINATION', response.data.pagination);
           context.dispatch('updateLoading', false, { root: true });
         } else {
-          console.log(response.data.message);
+          context.dispatch('updateLoading', false, { root: true });
         }
       });
     },
