@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <div class="my-5 row justify-content-center">
       <form class="col-md-6" @submit.prevent="payOrder">
         <table class="table">
