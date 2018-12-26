@@ -73,27 +73,13 @@ export default {
   methods: {
     getOrder() {
       const vm = this;
+
       this.$store.dispatch('orderModules/getOrder', vm.orderId);
     },
     payOrder() {
       const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/pay/${
-        vm.orderId
-      }`;
 
-      vm.isLoading = true;
-
-      vm.$http.post(api).then(response => {
-        if (response.data.success) {
-          vm.getOrder();
-
-          vm.isLoading = false;
-
-          console.log(response.data.message);
-        } else {
-          console.log(response.data.messate);
-        }
-      });
+      this.$store.dispatch('orderModules/payOrder', vm.orderId);
     },
     goHome() {
       const vm = this;
