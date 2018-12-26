@@ -72,18 +72,7 @@ export default {
   },
   methods: {
     getOrder() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order/${
-        vm.orderId
-      }`;
-
-      vm.$http.get(api).then(response => {
-        if (response.data.success) {
-          vm.order = response.data.order;
-        } else {
-          console.log(response.data.message);
-        }
-      });
+      this.$store.dispatch('orderModules/getOrder');
     },
     payOrder() {
       const vm = this;
