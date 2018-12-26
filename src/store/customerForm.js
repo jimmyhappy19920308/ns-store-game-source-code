@@ -28,7 +28,6 @@ export default {
       context.commit('MESSAGE', message);
     },
     sendOrder(context) {
-      console.log();
       const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
       const order = {
         user: {
@@ -55,7 +54,6 @@ export default {
           });
         } else {
           context.dispatch('updateLoading', false, { root: true });
-          console.log(response.data.message);
         }
       });
     },
