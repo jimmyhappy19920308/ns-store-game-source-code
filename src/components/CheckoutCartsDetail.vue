@@ -116,7 +116,6 @@ export default {
     },
     applyCoupon() {
       this.$store.dispatch('couponModules/applyCoupon', this.coupon);
-      console.log(this.coupon);
     },
     updateCoupon(e) {
       this.$store.dispatch('couponModules/updateCoupon', e.target.value);
