@@ -56,6 +56,25 @@ export default {
         }
       });
     },
+    payOrder(context, orderId) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/pay/${orderId}`;
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      axios.post(api).then(response => {
+        if (response.data.success) {
+          context.dispatch('getOrder', orderId);
+
+          context.dispatch('updateLoading', false, { root: true });
+
+          console.log(response.data.message);
+        } else {
+          context.dispatch('updateLoading', false, { root: true });
+
+          console.log(response.data.messate);
+        }
+      });
+    },
   },
   mutations: {
     ORDER(state, order) {
