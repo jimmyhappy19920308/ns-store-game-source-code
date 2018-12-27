@@ -10,7 +10,7 @@
           <span
             class="alert-secondary py-2 px-4 mb-5 text-monospace rounded"
             id="couponCode"
-            v-if="time"
+            v-if="remainTime"
             >excited
             <!-- Trigger -->
             <button
@@ -26,7 +26,7 @@
               <img src="../../public/images/clippy.svg" alt="" /></button
           ></span>
 
-          <p class="h2 text-danger" v-if="time < 0">優惠已截止</p>
+          <p class="h2 text-danger" v-if="remainTime < 0">優惠已截止</p>
         </div>
       </div>
     </div>
