@@ -46,6 +46,11 @@ export default {
       time: 0,
     };
   },
+  methods: {
+    countDueDate() {
+      this.$store.dispatch('couponDueDateModules/countDueDate');
+    },
+  },
   created() {
     const vm = this;
 
