@@ -3,10 +3,10 @@
     <div class="container d-flex justify-content-center align-items-center mt-3">
       <div class="card bg-light" style="width: 40rem;">
         <div class="card-body d-flex flex-column align-items-center">
-          <p class="text-danger h1 text-center mb-4" v-if="remainTime> 0">限時優惠</p>
-          <p class="h5 text-monospace text-center mb-4" v-if="remainTime> 0">{{ dueDateTimer }}</p>
-          <p class="card-title h1 mb-5 text-success" v-if="remainTime> 0">20% off</p>
-          <p class="card-text text-monospace py-2 h3 mb-2" v-if="remainTime> 0">Coupon Code:</p>
+          <p class="text-danger h1 text-center mb-4" v-if="remainTime > 0">限時優惠</p>
+          <p class="h5 text-monospace text-center mb-4" v-if="remainTime > 0">{{ dueDateTimer }}</p>
+          <p class="card-title h1 mb-5 text-success" v-if="remainTime > 0">20% off</p>
+          <p class="card-text text-monospace py-2 h3 mb-2" v-if="remainTime > 0">Coupon Code:</p>
           <span
             class="alert-secondary py-2 px-4 mb-5 text-monospace rounded"
             id="couponCode"
