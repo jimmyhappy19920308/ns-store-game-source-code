@@ -8,7 +8,7 @@ export default {
     countDueDate(context) {
       setInterval(() => {
         const nowDate = Math.floor(Date.now() / 1000);
-        const dueDate = Math.round(new Date('2018-12-31T23:59:59Z').getTime() / 1000);
+        const dueDate = Math.round(new Date('2019-1-27T23:59:59Z').getTime() / 1000);
         const remainTime = dueDate - nowDate - 28800;
 
         const day = Math.floor(remainTime / (24 * 3600));
