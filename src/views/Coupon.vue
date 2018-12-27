@@ -40,7 +40,7 @@ import $ from 'jquery';
 
 export default {
   computed: {
-    ...mapGetters(['dueDateTimer', 'remainTime']),
+    ...mapGetters('couponDueDateModules', ['dueDateTimer', 'remainTime']),
   },
   methods: {
     countDueDate() {
