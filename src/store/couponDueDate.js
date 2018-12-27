@@ -6,7 +6,9 @@ export default {
   },
   actions: {
     countDueDate(context) {
-      const remainTime = context.state.dueDate - context.state.nowDate - 28800;
+      const nowDate = Math.floor(Date.now() / 1000);
+      const dueDate = Math.round(new Date('2018-12-31T23:59:59Z').getTime() / 1000);
+      const remainTime = dueDate - nowDate - 28800;
 
       const day = Math.floor(remainTime / (24 * 3600));
       const hour = Math.floor((remainTime % (24 * 3600)) / 3600);
