@@ -39,6 +39,9 @@ import Clipboard from 'clipboard';
 import $ from 'jquery';
 
 export default {
+  computed: {
+    ...mapGetters(['dueDateTimer', 'remainTime']),
+  },
   methods: {
     countDueDate() {
       this.$store.dispatch('couponDueDateModules/countDueDate');
