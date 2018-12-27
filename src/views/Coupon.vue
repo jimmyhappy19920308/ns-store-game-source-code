@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Clipboard from 'clipboard';
 import $ from 'jquery';
 
