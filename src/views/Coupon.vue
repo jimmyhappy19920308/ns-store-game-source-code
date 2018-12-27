@@ -49,21 +49,7 @@ export default {
   created() {
     const vm = this;
 
-    if (vm.time >= 0) {
-      setInterval(() => {
-        vm.nowDate = Math.floor(Date.now() / 1000);
-        vm.dueDate = Math.round(new Date('2018-12-31T23:59:59Z').getTime() / 1000);
-
-        vm.time = vm.dueDate - vm.nowDate - 28800; // 結束時間 timestamp - 現在時間 timestamp - 8小時的秒數
-
-        const day = Math.floor(vm.time / (24 * 3600));
-        const hour = Math.floor((vm.time % (24 * 3600)) / 3600);
-        const minute = Math.floor((vm.time % 3600) / 60);
-        const second = Math.floor(vm.time % 60);
-
-        vm.$set(vm, 'timer', `${day} Day ${hour} Hours ${minute} Minutes ${second} Seconds`);
-      }, 1000);
-    }
+    vm.countDueDate();
   },
   mounted() {
     const clipboard = new Clipboard('.copy');
