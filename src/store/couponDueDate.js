@@ -32,4 +32,12 @@ export default {
       state.dueDateTimer = dueDateTimer;
     },
   },
+  getters: {
+    remainTime(state) {
+      return state.remainTime;
+    },
+    dueDateTimer(state) {
+      return state.dueDateTimer;
+    },
+  },
 };
