@@ -38,14 +38,6 @@ import Clipboard from 'clipboard';
 import $ from 'jquery';
 
 export default {
-  data() {
-    return {
-      nowDate: '',
-      dueDate: '',
-      timer: '6 Day 6 Hours 6 Minutes 6 Second',
-      time: 0,
-    };
-  },
   methods: {
     countDueDate() {
       this.$store.dispatch('couponDueDateModules/countDueDate');
