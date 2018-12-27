@@ -24,4 +24,12 @@ export default {
       }, 1000);
     },
   },
+  mutations: {
+    TIME(state, remainTime) {
+      state.remainTime = remainTime;
+    },
+    DUE_DATE_TIMER(state, dueDateTimer) {
+      state.dueDateTimer = dueDateTimer;
+    },
+  },
 };
