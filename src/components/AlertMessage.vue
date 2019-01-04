@@ -1,8 +1,11 @@
 <template>
   <div class="message-alert">
-    <div class="alert alert-dismissible"
+    <div
+      class="alert alert-dismissible"
       :class="'alert-' + item.status"
-      v-for="(item, index) in messages" :key="index">
+      v-for="(item, index) in messages"
+      :key="index"
+    >
       {{ item.message }}
       <button type="button" class="close" @click="removeMessage(index)" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -21,9 +24,9 @@ export default {
   methods: {
     removeMessage(index) {
       this.$store.dispatch('messageModule/removeMessage', index);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scope>
