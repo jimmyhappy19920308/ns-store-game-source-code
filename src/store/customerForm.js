@@ -43,6 +43,10 @@ export default {
 
       axios.post(api, { data: order }).then(response => {
         if (response.data.success) {
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('cartsModules/getCart', null, { root: true });
 
           context.dispatch('updateLoading', false, { root: true });
@@ -53,6 +57,10 @@ export default {
             },
           });
         } else {
+          const { message } = response.data;
+          const status = 'danger';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoading', false, { root: true });
         }
       });
