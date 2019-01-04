@@ -1,6 +1,7 @@
 <template>
   <div>
     <Navbar></Navbar>
+    <AlertMessage></AlertMessage>
     <router-view></router-view>
     <div
       v-if="
