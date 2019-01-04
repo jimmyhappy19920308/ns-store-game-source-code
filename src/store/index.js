@@ -6,6 +6,7 @@ import couponModules from './coupon';
 import couponDueDateModules from './couponDueDate';
 import customerFormModules from './customerForm';
 import orderModules from './order';
+import messageModule from './message';
 
 Vue.use(Vuex);
 
@@ -36,5 +37,6 @@ export default new Vuex.Store({
     customerFormModules,
     orderModules,
     couponDueDateModules,
+    messageModule,
   },
 });
