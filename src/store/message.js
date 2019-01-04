@@ -15,6 +15,9 @@ export default {
 
       context.dispatch('REMOVE_MESSAGE_TIMING', timestamp);
     },
+    removeMessage(context, index) {
+      context.commit('REMOVE_MESSAGE', index);
+    },
     removeMessageWithTiming(context, timestamp) {
       setInterval(() => {
         context.state.messages.forEach((item, index) => {
@@ -28,6 +31,9 @@ export default {
   mutations: {
     MESSAGE(state, payload) {
       state.messages.push(payload);
+    },
+    REMOVE_MESSAGE(state, index) {
+      state.messages.splice(index, 1);
     },
     REMOVE_MESSAGE_TIMING(state, index) {
       state.messages.splice(index, 1);
