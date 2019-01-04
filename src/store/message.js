@@ -13,7 +13,7 @@ export default {
         timestamp,
       });
 
-      context.dispatch('REMOVE_MESSAGE_TIMING', timestamp);
+      context.dispatch('removeMessageWithTiming', timestamp);
     },
     removeMessage(context, index) {
       context.commit('REMOVE_MESSAGE', index);
