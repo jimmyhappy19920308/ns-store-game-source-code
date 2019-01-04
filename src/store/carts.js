@@ -57,11 +57,19 @@ export default {
 
       axios.post(api, { data: cart }).then(response => {
         if (response.data.success) {
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           // this.$bus.$emit('get-cart-count');
           context.dispatch('getCart');
 
           context.dispatch('updateLoading', false, { root: true });
         } else {
+          const { message } = response.data;
+          const status = 'danger';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoading', false, { root: true });
         }
       });
