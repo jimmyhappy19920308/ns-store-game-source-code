@@ -46,6 +46,7 @@ import Navbar from '@/components/Navbar.vue';
 // import Checkout from '@/components/Checkout.vue';
 // import Products from '@/components/Products.vue';
 import ShoppingCart from '@/components/ShoppingCart.vue';
+import AlertMessage from '@/components/AlertMessage.vue';
 
 export default {
   components: {
@@ -54,6 +55,7 @@ export default {
     // Checkout,
     // Products,
     ShoppingCart,
+    AlertMessage,
   },
 };
 </script>
