@@ -18,5 +18,10 @@ export default {
   computed: {
     ...mapGetters('messageModule', ['messages']),
   },
+  methods: {
+    removeMessage(index) {
+      this.$store.dispatch('messageModule/removeMessage', index);
+    }
+  }
 }
 </script>
