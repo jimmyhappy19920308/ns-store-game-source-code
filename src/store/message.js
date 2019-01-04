@@ -21,7 +21,7 @@ export default {
     removeMessageWithTiming(context, timestamp) {
       setInterval(() => {
         context.state.messages.forEach((item, index) => {
-          if (timestamp === item[index].timestamp) {
+          if (timestamp === item.timestamp) {
             context.commit('REMOVE_MESSAGE_TIMING', index);
           }
         });
