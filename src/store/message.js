@@ -3,4 +3,9 @@ export default {
   state: {
     messages: [],
   },
+  getters: {
+    messages(state) {
+      return state.messages;
+    },
+  },
 };
