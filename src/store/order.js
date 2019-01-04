@@ -64,10 +64,18 @@ export default {
 
       axios.post(api).then(response => {
         if (response.data.success) {
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('getOrder', orderId);
 
           context.dispatch('updateLoading', false, { root: true });
         } else {
+          const message = '付款失敗';
+          const status = 'danger';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoading', false, { root: true });
         }
       });
