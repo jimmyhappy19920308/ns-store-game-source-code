@@ -66,7 +66,7 @@ export default {
 
           context.dispatch('updateLoading', false, { root: true });
         } else {
-          const { message } = response.data;
+          const message = '商品加入購物車失敗';
           const status = 'danger';
 
           context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
