@@ -10,7 +10,7 @@
           <span
             class="alert-secondary py-2 px-4 mb-5 text-monospace rounded"
             id="couponCode"
-            v-if="remainTime"
+            v-if="remainTime > 0"
             >excited
             <!-- Trigger -->
             <button
